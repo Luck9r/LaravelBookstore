@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('store');
+})->name('store');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'getUsers'])
+    ->middleware(['auth'])->name('dashboard');
+
+Route::get('/shopping_cart', function ()
+{
+    return view('shopping_cart');
+})->middleware(['auth'])->name('shopping_cart');;
 
 require __DIR__.'/auth.php';

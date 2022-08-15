@@ -51,7 +51,21 @@ class LoginRequest extends FormRequest
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
+        } else if ( Auth::user()->role == 2 )
+        {
+            /*ddd(Auth::user()->role);*/
+            /* If a user is blocked */
+            Auth::logout();
+
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => trans('auth.blocked'),
+            ]);
         }
+
+
+
 
         RateLimiter::clear($this->throttleKey());
     }
