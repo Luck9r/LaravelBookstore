@@ -40,8 +40,8 @@
                                                 <label for="quantity">Quantity</label>
                                             </div>
                                             <div class="input-field col s3">
-                                                <button class="waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="remove">Remove</button>
-                                                <button class="waves-effect waves-light btn-small mt-1 mr-1 right" type="submit" name="action" value="update">Update</button>
+                                                <button class="red darken-2 waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="remove">Remove</button>
+                                                <button class="amber lighten-1 waves-effect waves-light btn-small mt-1 mr-1 right" type="submit" name="action" value="update">Update</button>
                                             </div>
                                         </div>
                                     </form>
@@ -81,7 +81,7 @@
                                             <label for="quantity">Quantity</label>
                                         </div>
                                         <div class="input-field col s3">
-                                            <button class="waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="add">Add</button>
+                                            <button class="amber lighten-1 waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="add">Add</button>
                                         </div>
                                     </div>
                                 </form>
@@ -128,11 +128,11 @@
                                                     @csrf
                                                     <input value="{{ $user->id }}" name="id" type="hidden">
                                                     @if($user->role != 1)
-                                                        <button class="waves-effect waves-light btn-small" type="submit" name="action" value="remove">Remove</button>
+                                                        <button class="red darken-1 waves-effect waves-light btn-small" type="submit" name="action" value="remove">Remove</button>
                                                         @if($user->role == 0)
-                                                            <button class="waves-effect waves-light btn-small" type="submit" name="action" value="block">Block</button>
+                                                            <button class="blue darken-2 waves-effect waves-light btn-small" type="submit" name="action" value="block">Block</button>
                                                         @else
-                                                            <button class="waves-effect waves-light btn-small" type="submit" name="action" value="unblock">Unblock</button>
+                                                            <button class="light-blue waves-effect waves-light btn-small" type="submit" name="action" value="unblock">Unblock</button>
                                                         @endif
                                                     @endif
                                                 </form>

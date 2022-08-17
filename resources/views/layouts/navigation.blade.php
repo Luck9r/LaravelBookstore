@@ -1,4 +1,4 @@
-<nav>
+<nav class="amber darken-2">
     <div class="nav-wrapper">
         <a href="{{ route('store') }}" class="brand-logo center hide-on-med-and-down">
             <i class="material-icons">book</i>{{ config('app.name', 'Laravel') }}
@@ -19,7 +19,7 @@
         </ul>
         <ul id="nav-mobile" class="right">
             <li>
-                <a class="waves-effect waves-light btn" href="{{route('shopping_cart')}}">
+                <a class="green waves-effect waves-light btn" href="{{route('shopping_cart')}}">
                     <i class="material-icons left">shopping_cart</i>
                     Shopping cart
                 </a>

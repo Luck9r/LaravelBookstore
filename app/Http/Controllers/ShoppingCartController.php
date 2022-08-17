@@ -36,8 +36,6 @@ class ShoppingCartController extends Controller
         $stock = Book::find($request->input('book_id'));
         if($request->input('action') == "add")
         {
-            //TODO: quantity logic
-
             if($stock->quantity > 0)
             {
                 $item = ShoppingCartItem::firstOrNew([
