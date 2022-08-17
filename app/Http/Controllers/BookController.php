@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\DB;
-
 
 
 class BookController extends Controller
@@ -13,11 +13,9 @@ class BookController extends Controller
     {
         $book = Book::find($request->input('id'));
 
-        if($request->input('action') == "update")
-        {
+        if ($request->input('action') == "update") {
             $this->update($book, $request);
-        } else if($request->input('action') == "remove")
-        {
+        } else if ($request->input('action') == "remove") {
 
             $this_book_in_shopping_carts = DB::table('shopping_cart_items')->where('book_id', '=', $request->input('id'));
             $this_book_in_shopping_carts->delete();
@@ -48,8 +46,7 @@ class BookController extends Controller
 
     public function retrieve_state($state)
     {
-        switch($state)
-        {
+        switch ($state) {
             case 'on':
                 return 0;
             default:

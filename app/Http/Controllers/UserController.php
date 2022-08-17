@@ -12,14 +12,14 @@ class UserController extends Controller
     {
         $user = User::find($request->input('id'));
 
-        if($request->input('action') == "block") {
-            $user -> role = 2;
-            $user -> save();
-        } else if($request->input('action') == "unblock") {
-            $user -> role = 0;
-            $user -> save();
-        } else if($request->input('action') == "remove") {
-            $user ->delete();
+        if ($request->input('action') == "block") {
+            $user->role = 2;
+            $user->save();
+        } else if ($request->input('action') == "unblock") {
+            $user->role = 0;
+            $user->save();
+        } else if ($request->input('action') == "remove") {
+            $user->delete();
         }
 
         return redirect()->route('dashboard')->with('success', 'Users were modified.');

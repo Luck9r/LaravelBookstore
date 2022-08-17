@@ -22,10 +22,10 @@ class UserRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-     {
+    {
         return [
-                'id' => 'required',
-                'action' => 'required',
+            'id' => 'required',
+            'action' => 'required',
         ];
     }
 }

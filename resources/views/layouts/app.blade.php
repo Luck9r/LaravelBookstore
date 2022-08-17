@@ -29,7 +29,7 @@
 
 <main>
 
-{{ $slot }}
+    {{ $slot }}
 
 </main>
 @include('messages')

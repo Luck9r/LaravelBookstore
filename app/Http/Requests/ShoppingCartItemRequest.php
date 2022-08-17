@@ -24,9 +24,9 @@ class ShoppingCartItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'book_id'=>'required',
-            'user_id'=>'required',
-            'action'=>'required',
+            'book_id' => 'required',
+            'user_id' => 'required',
+            'action' => 'required',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\User;
 use App\Models\Book;
+
 //use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
@@ -33,11 +34,11 @@ class ShoppingCartControllerTest extends TestCase
             'password' => 'password',
         ]);
 
-        $this->post('/shopping_cart/modify',[
+        $this->post('/shopping_cart/modify', [
             'book_id' => $book->id,
             'user_id' => $user->id,
             'action' => 'add'
-            ]);
+        ]);
 
         $this->assertDatabaseHas('shopping_cart_items', [
             'book_id' => $book->id,
@@ -55,13 +56,13 @@ class ShoppingCartControllerTest extends TestCase
             'password' => 'password',
         ]);
 
-        $this->post('/shopping_cart/modify',[
+        $this->post('/shopping_cart/modify', [
             'book_id' => $book->id,
             'user_id' => $user->id,
             'action' => 'add'
         ]);
 
-        $this->post('/shopping_cart/modify',[
+        $this->post('/shopping_cart/modify', [
             'book_id' => $book->id,
             'user_id' => $user->id,
             'action' => 'remove'
@@ -85,7 +86,7 @@ class ShoppingCartControllerTest extends TestCase
             'password' => 'password',
         ]);
 
-        $this->post('/shopping_cart/modify',[
+        $this->post('/shopping_cart/modify', [
             'book_id' => $book->id,
             'user_id' => $user->id,
             'action' => 'add'

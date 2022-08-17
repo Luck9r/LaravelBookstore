@@ -21,22 +21,27 @@
                                     <input value="{{ $shopping_cart_item->book_id }}" name="book_id" type="hidden">
                                     <td>{{ $shopping_cart_item->book->title }}</td>
                                     <td>{{ $shopping_cart_item->book->first_name }} {{ $shopping_cart_item->book->last_name }}</td>
-                                    <td class="right">${{ $shopping_cart_item->book->price }} x {{ $shopping_cart_item->quantity }}</td>
-                                    <td><button class="red darken-1 waves-effect waves-light btn-small right" type="submit" name="action" value="remove">Remove</button></td>
+                                    <td class="right">${{ $shopping_cart_item->book->price }}
+                                        x {{ $shopping_cart_item->quantity }}</td>
+                                    <td>
+                                        <button class="red darken-1 waves-effect waves-light btn-small right"
+                                                type="submit" name="action" value="remove">Remove
+                                        </button>
+                                    </td>
                                 </tr>
                             </form>
                         @endif
-                   @endforeach
+                    @endforeach
                 @endauth
             @endif
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td class="right">
-                        ${{ $shopping_cart_total}} Total
-                    </td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right">
+                    ${{ $shopping_cart_total}} Total
+                </td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     </div>

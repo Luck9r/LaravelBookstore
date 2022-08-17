@@ -9,7 +9,7 @@
         </div>
         @pushOnce('scripts')
             <script type="text/javascript">
-                $(document).load(function() {
+                $(document).load(function () {
                     M.toast({html: 'I am a toast!'});
                 });
             </script>

@@ -17,7 +17,7 @@ class ShoppingCartController extends Controller
         $shopping_cart = ShoppingCartItem::getByUserId(Auth::user()->id);
 
         $shopping_cart_total = 0;
-        foreach($shopping_cart as $item) {
+        foreach ($shopping_cart as $item) {
             $shopping_cart_total += $item->book->price * $item->quantity;
         }
 
@@ -30,8 +30,8 @@ class ShoppingCartController extends Controller
     {
         $stock = Book::find($request->input('book_id'));
 
-        if($request->input('action') == "add") {
-            if($stock->quantity > 0) {
+        if ($request->input('action') == "add") {
+            if ($stock->quantity > 0) {
                 $item = ShoppingCartItem::firstOrNew([
                     'user_id' => $request->input('user_id'),
                     'book_id' => $request->input('book_id'),
@@ -41,11 +41,11 @@ class ShoppingCartController extends Controller
                 $item->quantity += 1;
                 $item->save();
 
-                return redirect()->route('store')->with('success', $stock->title.' successfully added to cart!');
+                return redirect()->route('store')->with('success', $stock->title . ' successfully added to cart!');
             } else {
                 return redirect()->route('store')->with('error', 'This book is out of stock');
             }
-        } else if($request->input('action') == "remove") {
+        } else if ($request->input('action') == "remove") {
             $item = ShoppingCartItem::firstOrNew([
                 'user_id' => $request->input('user_id'),
                 'book_id' => $request->input('book_id'),
