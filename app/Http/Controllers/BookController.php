@@ -56,4 +56,10 @@ class BookController extends Controller
                 return 1;
         }
     }
+
+    public function getBooks()
+    {
+        $params['books'] = Book::all();
+        return view('store', $params);
+    }
 }

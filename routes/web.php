@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\StoreController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShoppingCartController;
 /*
@@ -18,7 +17,7 @@ use App\Http\Controllers\ShoppingCartController;
 |
 */
 
-Route::get('/', [StoreController::class, 'getBooks'])
+Route::get('/', [BookController::class, 'getBooks'])
     ->name('store');
 
 Route::get('/dashboard', [DashboardController::class, 'getData'])
