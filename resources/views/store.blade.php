@@ -1,31 +1,37 @@
 <x-app-layout>
     <div class="container mt-8">
-
-        {{--@foreach ($books as $book)
-            <p>This is book {{ $book->id }}</p>
-        @endforeach--}}
         <div class="row">
-            <div class="col m3">
+            @foreach ($books as $book)
+                @if($book->published_state == 0)
+                    <div class="col m3">
+                        <div class="card hoverable">
+                            <div class="card-content">
+                                <span class="card-title">{{ $book->title }}</span>
+                                <p>{{ $book->first_name }} {{ $book->last_name }} </p>
+                                <p>@if($book->quantity < 1) Out of stock @else In stock @endif</p>
+                                @if (Route::has('login'))
+                                    @auth
+                                        <form action="{{ route('shopping_cart_modify') }}" method="POST">
+                                            @csrf
+                                            <input value="{{ $book->id }}" name="book_id" type="hidden">
+                                            <input value="{{ Auth::user()->id }}" name="user_id" type="hidden">
+                                            <button @if($book->quantity < 1) disabled @endif class=" mt-4 waves-effect waves-light btn-large" type="submit" name="action" value="add">
+                                                <i class="material-icons left">add_shopping_cart</i>${{ number_format((float)$book->price, 2, '.', '') }}
+                                            </button>
+                                        </form>
+                                @else
+                                        <a class="waves-effect waves-light btn-large mt-8 disabled">
+                                            <i class="material-icons left">add_shopping_cart</i>${{ number_format((float)$book->price, 2, '.', '') }}
+                                        </a>
+                                        <p>You have to be logged in to make purchases.</p>
+                                    @endauth
+                                @endif
 
-                <div class="card hoverable">
-                    <div class="card-content">
-                        <span class="card-title">1984</span>
-                        <p>George Orwell</p>
-                        <a class="waves-effect waves-light btn-large mt-8" onclick="notify();">
-                            <i class="material-icons left">add_shopping_cart</i>$7.00
-                        </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-            </div>
+                @endif
+            @endforeach
         </div>
     </div>
-    <script type="text/javascript">
-        function notify() {
-
-            M.toast({html: ''});
-
-        }
-
-    </script>
 </x-app-layout>

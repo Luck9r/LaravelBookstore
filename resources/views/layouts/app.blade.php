@@ -25,11 +25,14 @@
 
 <body>
 @include('layouts.navigation')
+<div class="mt-8"></div>
+
 <main>
 
 {{ $slot }}
 
 </main>
+@include('messages')
 @include('layouts.footer')
 </body>
 

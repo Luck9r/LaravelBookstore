@@ -1,98 +1,91 @@
 <x-app-layout>
-
         @if (Route::has('login'))
             @auth
                 @if(Auth::user()->role == 1)
                     <div class="container mt-8">
                         <ul class="collection with-header">
                             <li class="collection-header"><h4>Books</h4></li>
+                            @foreach ($books as $book)
+                                <li class="collection-item">
+                                    <div class="mt-8"></div>
+                                    <form class="col s12" action="{{ route('books_modify') }}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <input value="{{ $book->id }}" name="id" class="hide">
+                                            <div class="input-field col s2">
+                                                <input value="{{ $book->title }}" name="title" type="text">
+                                                <label for="title">Book Title</label>
+                                            </div>
+                                            <div class="input-field col s2">
+                                                <input value="{{ $book->first_name }}" name="first_name" type="text">
+                                                <label for="first_name">First Name</label>
+                                            </div>
+                                            <div class="input-field col s2">
+                                                <input value="{{ $book->last_name }}" name="last_name" type="text">
+                                                <label for="last_name">Last Name</label>
+                                            </div>
+                                            <div class="input-field col s1">
+                                                <input value="{{ number_format((float)$book->price, 2, '.', '') }}" name="price" type="text">
+                                                <label for="price">Price($)</label>
+                                            </div>
+                                                <div class="switch input-field col s1">
+                                                    <label>
+                                                        P
+                                                        <input @checked($book->published_state == 0) type="checkbox" name="published_state">
+                                                        <span class="lever"></span>
+                                                    </label>
+                                                </div>
+                                            <div class="input-field col s1">
+                                                <input value="{{ $book->quantity }}" name="quantity" type="text">
+                                                <label for="quantity">Quantity</label>
+                                            </div>
+                                            <div class="input-field col s3">
+                                                <button class="waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="remove">Remove</button>
+                                                <button class="waves-effect waves-light btn-small mt-1 mr-1 right" type="submit" name="action" value="update">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                               @endforeach
                             <li class="collection-item">
-                                <table class="highlight">
-                                    <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Author</th>
-                                        <th>Price</th>
-                                        <th>Published state</th>
-                                        <th>Quantity</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($users as $user)
-
-                                        <tr class="">
-                                            {{--Save book id to the update / remove buttons--}}
-                                            <td>
-                                                <div class="input-field inline">
-                                                    <input placeholder="{{ $user->name }}" id="title" type="text">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="input-field">
-                                                    <input placeholder="{{ $user->name }}" id="first_name" type="text">
-                                                    <label for="first_name">First Name</label>
-                                                </div>
-                                                <div class="input-field">
-                                                    <input placeholder="{{ $user->name }}" id="last_name" type="text">
-                                                    <label for="last_name">Last Name</label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                $
-                                                <div class="input-field inline">
-                                                    <input placeholder="{{ $user->id }}" id="last_name" type="text">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                @switch($user->role)
-                                                    @case(0)
-                                                        <p>
-                                                            <label>
-                                                                <input name="published-{{ $user->id }}" type="radio" />
-                                                                <span>Published</span>
-                                                            </label>
-                                                        </p>
-                                                        <p>
-                                                            <label>
-                                                                <input name="published-{{ $user->id }}" type="radio" checked/>
-                                                                <span>Not Published</span>
-                                                            </label>
-                                                        </p>
-                                                        @break
-                                                    @case(1)
-                                                        <p>
-                                                            <label>
-                                                                <input name="published-{{ $user->id }}" type="radio"  checked/>
-                                                                <span>Published</span>
-                                                            </label>
-                                                        </p>
-                                                        <p>
-                                                            <label>
-                                                                <input name="published-{{ $user->id }}" type="radio" />
-                                                                <span>Not Published</span>
-                                                            </label>
-                                                        </p>
-                                                        @break
-                                                    @default
-                                                        Error
-                                                @endswitch
-                                            </td>
-                                            <td>
-                                                {{ $user->id }}
-                                            </td>
-                                            <td>
-                                                <div style="padding-top: 12%">
-                                                    <a class="waves-effect waves-light btn">Update</a>
-                                                    <a class="waves-effect waves-light btn">Remove</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                <div class="mt-8"></div>
+                                <form class="col s12" action="{{ route('books_add') }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <input value="" name="id" class="hide">
+                                        <div class="input-field col s2">
+                                            <input value="" name="title" type="text">
+                                            <label for="title">Book Title</label>
+                                        </div>
+                                        <div class="input-field col s2">
+                                            <input value="" name="first_name" type="text">
+                                            <label for="first_name">First Name</label>
+                                        </div>
+                                        <div class="input-field col s2">
+                                            <input value="" name="last_name" type="text">
+                                            <label for="last_name">Last Name</label>
+                                        </div>
+                                        <div class="input-field col s1">
+                                            <input value="" name="price" type="text">
+                                            <label for="price">Price($)</label>
+                                        </div>
+                                            <div class="switch input-field col s1">
+                                                <label>
+                                                    P
+                                                    <input checked="checked" type="checkbox" name="published_state">
+                                                    <span class="lever"></span>
+                                                </label>
+                                            </div>
+                                        <div class="input-field col s1">
+                                            <input value="" name="quantity" type="text">
+                                            <label for="quantity">Quantity</label>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <button class="waves-effect waves-light btn-small mt-1 right" type="submit" name="action" value="add">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </li>
-
                         </ul>
                         <ul class="collection with-header">
                             <li class="collection-header"><h4>Users</h4></li>
@@ -131,17 +124,20 @@
                                                 @endswitch
                                             </td>
                                             <td class="right">
-                                                @if($user->role != 1)
-                                                    <a class="waves-effect waves-light btn">Remove</a>
-                                                    @if($user->role == 0)
-                                                        <a class="waves-effect waves-light btn">Block</a>
-                                                    @else
-                                                        <a class="waves-effect waves-light btn">Unblock</a>
+                                                <form action="{{ route('users_modify') }}" method="POST">
+                                                    @csrf
+                                                    <input value="{{ $user->id }}" name="id" type="hidden">
+                                                    @if($user->role != 1)
+                                                        <button class="waves-effect waves-light btn-small" type="submit" name="action" value="remove">Remove</button>
+                                                        @if($user->role == 0)
+                                                            <button class="waves-effect waves-light btn-small" type="submit" name="action" value="block">Block</button>
+                                                        @else
+                                                            <button class="waves-effect waves-light btn-small" type="submit" name="action" value="unblock">Unblock</button>
+                                                        @endif
                                                     @endif
-                                                @endif
+                                                </form>
                                             </td>
                                         </tr>
-
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -152,7 +148,7 @@
                     <container class="valign-wrapper">
                         <div class="row">
                             <div class="col s12 m12">
-                                <div class="card-panel teal">
+                                <div class="card-panel red">
                                     <span class="white-text">You are not authorised to view this page!</span>
                                 </div>
                             </div>
@@ -161,10 +157,5 @@
                 @endif
             @endauth
         @endif
-
-
-
-
-
 </x-app-layout>
 

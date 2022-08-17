@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ShoppingCartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,16 +18,25 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('store');
-})->name('store');
+Route::get('/', [StoreController::class, 'getBooks'])
+    ->name('store');
 
-Route::get('/dashboard', [UserController::class, 'getUsers'])
+Route::get('/dashboard', [DashboardController::class, 'getData'])
     ->middleware(['auth'])->name('dashboard');
 
-Route::get('/shopping_cart', function ()
-{
-    return view('shopping_cart');
-})->middleware(['auth'])->name('shopping_cart');;
+Route::get('/shopping_cart', [ShoppingCartController::class, 'getShoppingCartItems'])
+    ->middleware(['auth'])->name('shopping_cart');
+
+Route::post('/dashboard/users/modify', [UserController::class, 'modify'])
+    ->name('users_modify');
+
+Route::post('/dashboard/books/modify', [BookController::class, 'modify'])
+    ->name('books_modify');
+
+Route::post('/shopping_cart/modify', [ShoppingCartController::class, 'modify'])
+    ->name('shopping_cart_modify');
+
+Route::post('/dashboard/books/add', [BookController::class, 'add'])
+    ->name('books_add');
 
 require __DIR__.'/auth.php';
