@@ -20,9 +20,18 @@ class ShoppingCartItem extends Model implements Auditable
     {
         return $this->belongsTo(Book::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function getByUserId($user_id)
+    {
+        $shopping_cart = ShoppingCartItem::where('user_id', $user_id)->get();
+        $shopping_cart->load(['book']);
+
+        return $shopping_cart;
     }
 
 }

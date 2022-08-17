@@ -33,15 +33,7 @@
                     <td></td>
                     <td></td>
                     <td class="right">
-                        @if (Route::has('login'))
-                            @auth
-                                @foreach($shopping_cart_totals as $total)
-                                    @if($total->user_id == Auth::user()->id)
-                                        ${{ $total->s}} Total
-                                    @endif
-                                @endforeach
-                            @endauth
-                        @endif
+                        ${{ $shopping_cart_total}} Total
                     </td>
                     <td></td>
                 </tr>

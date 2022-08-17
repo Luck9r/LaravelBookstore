@@ -12,6 +12,7 @@ class BookController extends Controller
     public function modify(BookRequest $request)
     {
         $book = Book::find($request->input('id'));
+
         if($request->input('action') == "update")
         {
             $this->update($book, $request);
@@ -22,6 +23,7 @@ class BookController extends Controller
             $this_book_in_shopping_carts->delete();
             $book->delete();
         }
+
         return redirect()->route('dashboard')->with('success', 'A book was updated.');
     }
 
@@ -29,12 +31,12 @@ class BookController extends Controller
     {
         $book = new Book();
         $this->update($book, $request);
+
         return redirect()->route('dashboard')->with('success', 'A book was added.');
     }
 
     public function update(Book $book, BookRequest $request)
     {
-
         $book->title = $request->input('title');
         $book->price = $request->input('price');
         $book->quantity = $request->input('quantity');

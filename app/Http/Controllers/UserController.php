@@ -11,16 +11,14 @@ class UserController extends Controller
     public function modify(UserRequest $request)
     {
         $user = User::find($request->input('id'));
-        if($request->input('action') == "block")
-        {
+
+        if($request->input('action') == "block") {
             $user -> role = 2;
             $user -> save();
-        } else if($request->input('action') == "unblock")
-        {
+        } else if($request->input('action') == "unblock") {
             $user -> role = 0;
             $user -> save();
-        } else if($request->input('action') == "remove")
-        {
+        } else if($request->input('action') == "remove") {
             $user ->delete();
         }
 
