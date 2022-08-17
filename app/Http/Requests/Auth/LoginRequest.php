@@ -53,8 +53,6 @@ class LoginRequest extends FormRequest
             ]);
         } else if ( Auth::user()->role == 2 )
         {
-            /*ddd(Auth::user()->role);*/
-            /* If a user is blocked */
             Auth::logout();
 
             RateLimiter::hit($this->throttleKey());

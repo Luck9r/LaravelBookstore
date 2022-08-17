@@ -35,6 +35,4 @@
 @include('messages')
 @include('layouts.footer')
 </body>
-
-
 </html>
