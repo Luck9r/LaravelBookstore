@@ -26,8 +26,8 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
             'first_name' => 'required',
             'last_name' => 'required',
         ];
